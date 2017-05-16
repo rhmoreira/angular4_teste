@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  private authUrl = 'http://localhost:8080/Auth-Rest/api/Auth/Login';
+  private authUrl = 'http://localhost:8080/Auth-Rest/api/auth/login';
+  // private tokenValidateUrl = 'http://localhost:8080/Auth-Rest/api/auth/token/validate';
 
   senha: string;
   usuario: User = new User();

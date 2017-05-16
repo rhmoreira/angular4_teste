@@ -24,7 +24,7 @@ export class NovoContatoComponent implements OnInit {
     this.listService.novo(this.contato)
                     .subscribe(
                         data => {},
-                        (erro: any ) => this.message = Constants.HTTP_STATUS_MSG[erro.status]
+                        error => this.message = error.json().message
                     );
     form.reset();
   }

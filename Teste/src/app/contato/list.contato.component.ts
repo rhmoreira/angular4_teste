@@ -24,7 +24,7 @@ export class ListContatoComponent implements OnInit {
       this.listService.list()
           .subscribe(
             contatos => this.contatos = contatos,
-            (error: any) => this.errorMessage = Constants.HTTP_STATUS_MSG[error.status]
+            error => this.errorMessage = error.json().message
           );
   }
 
@@ -32,7 +32,7 @@ export class ListContatoComponent implements OnInit {
     this.listService.remove(id)
                     .subscribe(
                       data => {},
-                      (error: any) => this.errorMessage = Constants.HTTP_STATUS_MSG[error.status]
+                      error => this.errorMessage = error.json().message
                     );
   }
 }

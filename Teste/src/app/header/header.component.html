@@ -1,0 +1,5 @@
+ <ul>
+ 	<li><a [routerLink]="[{outlets: {body: 'listContato'}}]" routerLinkActive="active" *ngIf="httpAuth.tokenSession && httpAuth.tokenSession?.token">Lista de contatos</a></li> 
+ 	<li><a [routerLink]="[{outlets: {body: 'novoContato'}}]" routerLinkActive="active">Enviar contato</a></li>
+ 	<li><a [routerLink]="[{outlets: {body: 'login'}}]" routerLinkActive="active" *ngIf="!httpAuth.tokenSession && !httpAuth.tokenSession?.token">Login</a></li>
+ </ul>

@@ -1,0 +1,22 @@
+<h1>Novo contato</h1>
+
+<form (ngSubmit)="doLogin(loginForm)" #loginForm="ngForm">
+	<div class="form">
+		<label>Login
+			<span *ngIf="login.errors">
+			<span class="required" [hidden]="!login.errors['required']">*</span>
+        </span>
+		</label>
+		<input [(ngModel)]="usuario.login" name="nome" #login="ngModel" required>
+		
+		<label>Senha
+			<span *ngIf="senha.errors">
+			<span class="required" [hidden]="!senha.errors['required']">*</span>
+        </span>
+		</label>
+		<input type="password" [(ngModel)]="usuario.senha" name="senha" #senha="ngModel" required>
+		
+		
+		<input type="submit" value="Entrar" [disabled]="!loginForm.valid">
+	</div>
+</form>

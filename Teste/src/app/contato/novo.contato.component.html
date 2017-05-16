@@ -1,0 +1,54 @@
+<h1>Novo contato</h1>
+{{message}}
+<form (ngSubmit)="novo(contatoForm)" #contatoForm="ngForm">
+	<div class="form">
+		<label>Nome
+			<span *ngIf="nome.errors">
+			<span class="required" [hidden]="!nome.errors['required']">*</span>
+        </span>
+		</label>
+		<input [(ngModel)]="contato.nome" name="nome" #nome="ngModel" required>
+		
+		
+		<label>Email
+			<span *ngIf="email.errors">
+				<span class="required" [hidden]="!email.errors['required']">*</span>
+	        </span>
+		</label>
+		<input [(ngModel)]="contato.email" name="email" #email="ngModel" required="required">
+		
+		
+		<label>Telefone
+			<span *ngIf="telefone.errors">
+				<span class="required" [hidden]="!telefone.errors['required']">*</span>
+	        </span>
+		</label>
+		<input [(ngModel)]="contato.telefone" name="telefone" #telefone="ngModel" required="required">
+		
+		<label>Estado
+			<span *ngIf="estado.errors">
+				<span class="required" [hidden]="!estado.errors['required']">*</span>
+	        </span>
+		</label>
+		<select [ngModel]="contato.estado" name="estado" #estado="ngModel" required>
+			<option value="" selected="selected">[Selecione...]</option>
+			<option *ngFor="let obj of uf" [value]="obj">{{obj}}</option>
+		</select>
+		
+		<label>Empresa
+			<span *ngIf="empresa.errors">
+				<span class="required" [hidden]="!empresa.errors['required']">*</span>
+	        </span>
+		</label>
+		<input [(ngModel)]="contato.empresa" name="empresa" #empresa="ngModel" required="required">
+		
+		<label>Mensagem
+			<span *ngIf="mensagem.errors">
+				<span class="required" [hidden]="!mensagem.errors['required']">*</span>
+	        </span>
+		</label>
+		<textarea [(ngModel)]="contato.mensagem" name="mensagem" #mensagem="ngModel" cols="50" rows="10" required="required"> </textarea>
+		
+		<input type="submit" value="Registrar Contato" [disabled]="!contatoForm.valid">
+	</div>
+</form>

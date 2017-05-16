@@ -1,0 +1,7 @@
+<h1>Lista de contatos</h1>
+{{errorMessage}}
+<ul>
+	<li *ngFor="let contato of contatos">{{contato.nome}} - {{contato.email}} <button (click)="remove(contato.id)">Apagar</button> </li>
+</ul>
+
+<button class="command" (click)="list()">Listar</button>

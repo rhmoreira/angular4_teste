@@ -1,0 +1,13 @@
+.form > *{
+	float: left;
+	clear: both;
+}
+
+.command {
+	float: left;
+	clear: both;
+}
+
+.required {
+	color: red; 
+}

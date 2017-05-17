@@ -20,11 +20,11 @@ import { Constants } from './constants';
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     ListContatoComponent,
     NovoContatoComponent,
     HeaderComponent,
     FooterComponent,
-    AuthComponent
   ],
   imports: [
     BrowserModule,

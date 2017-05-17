@@ -1,7 +1,8 @@
 import { Constants } from '../constants';
+import { MessageHandlerService } from '../messagehandler.service';
 import { Contato } from './contato.class';
 import { ContatoService } from './contato.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -13,9 +14,8 @@ import { Observable } from 'rxjs';
 export class ListContatoComponent implements OnInit {
 
   contatos: Contato[];
-  errorMessage: string;
 
-  constructor(private listService: ContatoService) {}
+  constructor(private listService: ContatoService, private msgHandler: MessageHandlerService) {}
 
   ngOnInit() {
   }
@@ -24,15 +24,18 @@ export class ListContatoComponent implements OnInit {
       this.listService.list()
           .subscribe(
             contatos => this.contatos = contatos,
-            error => this.errorMessage = error.json().message
+            error => this.msgHandler.setMessage(error.json().message, Constants.ERROR)
           );
   }
 
-  remove(id: number) {
-    this.listService.remove(id)
+  remove(index: number) {
+    this.listService.remove(this.contatos[index].id)
                     .subscribe(
-                      data => {},
-                      error => this.errorMessage = error.json().message
+                      data => {
+                        this.contatos.splice(index, 1);
+                        this.msgHandler.setMessage(data.json().message, Constants.SUCCESS);
+                      },
+                      error => this.msgHandler.setMessage(error.json().message, Constants.ERROR)
                     );
   }
 }

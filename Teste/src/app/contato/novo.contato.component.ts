@@ -1,4 +1,5 @@
 import { Constants } from '../constants';
+import { MessageHandlerService } from '../messagehandler.service';
 import { ContatoService } from './contato.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, Form, NgForm } from '@angular/forms';
@@ -15,7 +16,7 @@ export class NovoContatoComponent implements OnInit {
   contato: Contato = new Contato();
   uf = Constants.UF;
 
-  constructor(private listService: ContatoService) {}
+  constructor(private listService: ContatoService, private msgHandler: MessageHandlerService) {}
 
   ngOnInit() { }
 
@@ -23,8 +24,8 @@ export class NovoContatoComponent implements OnInit {
     console.log(form.valid);
     this.listService.novo(this.contato)
                     .subscribe(
-                        data => {},
-                        error => this.message = error.json().message
+                        data => this.msgHandler.setMessage(data.json().message, Constants.SUCCESS),
+                        error => this.msgHandler.setMessage(error.json().message, Constants.ERROR)
                     );
     form.reset();
   }
